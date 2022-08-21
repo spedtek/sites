@@ -1,9 +1,9 @@
 <?php
-include_once('_BDD/co-bdd.php');
-include_once('include.php');
+
+include_once('_BDD/include.php');
 
 if(isset($_SESSION['id'])){
-  $var = "Bonjour" . $_SESSION['prénom'];
+  $var = "Bonjour" . ' ' .$_SESSION['prénom'];
 }else{
   $var = "Bonjour à tous";
 }
@@ -24,9 +24,9 @@ if(isset($_SESSION['id'])){
  <?php
     include_once('menu/menu.php');
  ?>
-  <h1><?php 
-  echo  $var = "Bonjour" . '' . $_SESSION['prénom']; ;
-?></h1>
+  <h1>
+    <?= $var ?>
+  </h1>
       <!--
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
   <div class="carousel-indicators">

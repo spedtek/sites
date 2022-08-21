@@ -1,6 +1,6 @@
 <?php
-include_once('_BDD/co-bdd.php');
-include_once('include.php');
+
+include_once('_BDD/include.php');
 
 
 if(!empty($_POST)){
