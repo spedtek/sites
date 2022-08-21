@@ -1,6 +1,12 @@
 <?php
 include_once('_BDD/co-bdd.php');
+include_once('include.php');
 
+if(isset($_SESSION['id'])){
+  $var = "Bonjour" . $_SESSION['prénom'];
+}else{
+  $var = "Bonjour à tous";
+}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -18,10 +24,11 @@ include_once('_BDD/co-bdd.php');
  <?php
     include_once('menu/menu.php');
  ?>
-
-
-
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+  <h1><?php 
+  echo  $var = "Bonjour" . '' . $_SESSION['prénom']; ;
+?></h1>
+      <!--
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -31,7 +38,7 @@ include_once('_BDD/co-bdd.php');
     <div class="carousel-item active">
       <img src="recrut1.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h1>TNT CONSEILS</h1>
+        <h2>TNT CONSEILS</h2>
         <p>Spécialiste du recrutement dans l'hotellerie et la restauration</p>
       </div>
     </div>
@@ -59,7 +66,7 @@ include_once('_BDD/co-bdd.php');
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
+-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
 </html>

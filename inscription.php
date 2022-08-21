@@ -1,16 +1,59 @@
 <?php
 include_once('_BDD/co-bdd.php');
+include_once('include.php');
 
-
+if(isset($_SESSION['id'])){
+  header('Location: index.php');
+  exit;
+}
 
 if(!empty($_POST)){
     extract($_POST);
 
+    $valid = (boolean) true;
+
     if(isset($_POST['inscription'])){
-        echo 'ok';
-    }else{
-        echo 'veuillez renseigner les informations manquantes';
+       $Nom = trim($Nom);
+       $Prénom = trim($Prénom);
+       $Email = trim($Email);
+       $Mdp = trim($Mdp);
+
+       if(empty($Nom)){
+        $valid = false;
+        $err_nom = "Ce champ ne peut pas être vide";
+       }
+       if(empty($Prénom)){
+        $valid = false;
+        $err_prénom = "Ce champ ne peut pas être vide";
+       }
+       if(empty($Email)){
+        $valid = false;
+        $err_email = "Ce champ ne peut pas être vide";
+       }else{
+        $req = $BDD->prepare("SELECT id
+        FROM utilisateurs
+        where email = ?");
+
+        $req->execute(array($Email));
+        
+        $req = $req->fetch();
+
+       if(empty($Mdp)){
+        $valid = false;
+        $err_mdp = "Ce champ ne peut pas être vide";
+       }
+       if ($valid){
+        $req = $BDD->prepare("INSERT INTO utilisateurs(nom, prenom, email, mdp) VALUES (?,?,?,?)");
+        $req->execute(array($Nom, $Prénom, $Email, $Mdp));
+
+        header('Location: connexion.php');
+        exit;
+       }else{
+        echo 'des champs du questionnaire sont manquants';
+      
+       }
     }
+}
 }
 
 ?>
@@ -38,34 +81,46 @@ if(!empty($_POST)){
             <h1 class="col-md-3 mx-auto mx-auto">Formulaire d'inscription</h1>
     <form method="post">
       <div class="mb-3">
+        <?php if(isset($err_nom)){echo '<div>' . $err_nom . '</div>';}?>
         <label class="form-label">Nom</label>
-        <input class="form-control" type="text" value="" placeholder="Nom">
+        <input class="form-control" type="text" name="Nom" value="<?php if(isset($Nom)){echo $Nom;}?>" placeholder="Nom">
       </div>
     <div class="mb-3" >
+      <?php if(isset($err_prénom)){echo '<div>' . $err_prénom . '</div>';}?>
       <label for="firstname" class="form-label">Prénom</label>
-      <input class="form-control" type="text" value="" placeholder="Prénom">
+      <input class="form-control" type="text" name="Prénom" value="<?php if(isset($Prénom)){echo $Prénom;}?>" placeholder="Prénom">
     </div>
     <div class="mb-3">
+      <?php if(isset($err_email)){echo '<div>' . $err_email . '</div>';}?>
       <label for="email" class="form-label">E-mail</label>
-      <input class="form-control" type="text" value="" placeholder="E-mail">
+      <input class="form-control" type="text" name="Email" value="<?php if(isset($Email)){echo $Email;}?>" placeholder="E-mail">
     </div>
+    <!--
     <div class="mb-3">
+      <?php if(isset($err_confirmemail)){echo '<div>' . $err_confirmemail . '</div>';}?>
       <label for="email" class="form-label">Confirmation e-mail</label>
-      <input class="form-control" type="text" value="" placeholder="Confirmation e-mail">
+      <input class="form-control" type="text" name="Confirmmail" value="<?php if(isset($Confirmmail)){echo $Confirmmail;}?>" placeholder="Confirmation e-mail">
     </div>
+-->
     <div class="mb-3">
+      <?php if(isset($err_mdp)){echo '<div>' . $err_mdp . '</div>';}?>
       <label for="password" class="password">Mot de passe</label>
-      <input class="form-control" type="text" value="" placeholder="password">
+      <input class="form-control" type="password" name="Mdp" value="<?php if(isset($Mdp)){echo $Mdp;}?>" placeholder="Mot de passe">
     </div>
+
+  <!--
     <div class="mb-3">
+      <?php if(isset($err_confirmmdp)){echo '<div>' . $err_confirmmdp . '</div>';}?>
       <label for="confirmation password" class="password">Confirmation mot de passe</label>
-      <input class="form-control" type="text" value="" placeholder="confirmation password">
-      
+      <input class="form-control" type="password" name="Confirmmdp" value="<?php if(isset($Confirmmdp)){echo $Confirmmdp;}?>" placeholder="confirmation password">
     </div>
+
     <div class="mb-3">
+      <?php if(isset($err_cv)){echo '<div>' . $err_cv . '</div>';}?>
       <label for="formFile" class="form-label">Télécharger mon CV</label>
-      <input class="form-control" type="file" value="" placeholder="télécharger votre CV">
+      <input class="form-control" type="file" name="CV" value="<?php if(isset($CV)){echo $CV;}?>" placeholder="télécharger votre CV">
     </div>
+-->
     <div class="p-2">
       <button class="btn btn-primary" name="inscription">Envoyer</button>
     </div>
