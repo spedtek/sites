@@ -1,6 +1,12 @@
 <?php
 
-include_once('_BDD/include.php');
+    include_once('_BDD/include.php');
+
+    $req = $BDD->query("SELECT *
+    FROM offres
+    ORDER BY date_creation");
+
+    $req = $req->fetchAll();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -18,30 +24,39 @@ include_once('_BDD/include.php');
         <?php
             include_once('menu/menu.php');
         ?>
+      
+        
         <div class="container">
             <div class="row">
 
-                <div class="col-sm-0 col-md-0 col-lg-0"></div>
+                <div class="col-sm-0 col-md-0 col-lg-0" style="margin-top: 20px">
+                <a href="#" class="btn btn-primary " role="button" aria-pressed="true">Publier une offre d'emploi</a>
+                </div>
                 <div class="col-sm-12 col-md-12 col-lg-12"></div>
                     <h1 style="text-align : center">Les offres d'emploi</h1>
                     <?php
                         if(isset($_SESSION['id'])){
                     ?>
-                        <a href="#" class="btn btn-primary" role="button" aria-pressed="true">Publier une offre d'emploi</a>
+                        
                     <?php
                         }
                     ?>
-                    <div class="table-responsive" style="margin-top: 10px">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>ID</th>
-                                <th>Titre</th>
-                            </tr>
-                        </table>
-
-                    </div>
-            </div>
-        </div>
+                    <?php
+                        foreach($req as $r){
+                    ?>
+                        <div style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
+                            <a href="Les offres/<?= $r['id'] ?>" style="color: #666; text-decoration: none; font-size: 28px;"><?= $r['titre'] ?></a>
+                            <div style="border-top: 2px solid #EEE; padding-top: 15px">
+                                <?= $r['titre']; ?>
+                            </div>
+                            <div style="border-top: 2px solid #EEE; padding-top: 15px; text-align: right">
+                                <?= $r['contenu']; ?>
+                            </div>
+                        </div>
+                        <?php
+                        }
+                        ?>
+                     
 
 
 
