@@ -43,14 +43,21 @@ if(!empty($_POST)){
         $err_mdp = "Ce champ ne peut pas être vide";
        }
        if ($valid){
+
+        $crypt_password = password_hash($Mdp, PASSWORD_ARGON2ID);
+
+        if (password_verify($Mdp, $crypt_password)){
+          echo 'Le mot de passe est valide !';
+        }else{
+          echo 'Le mot de passe est invalide!';
+        }
         $req = $BDD->prepare("INSERT INTO utilisateurs(nom, prenom, email, mdp) VALUES (?,?,?,?)");
         $req->execute(array($Nom, $Prénom, $Email, $Mdp));
 
         header('Location: connexion.php');
         exit;
        }else{
-        echo 'des champs du questionnaire sont manquants';
-      
+          echo 'des champs du questionnaire sont manquants';
        }
     }
 }

@@ -118,7 +118,9 @@ if(!empty($_POST)){
                   <label for="password" class="password">Mot de passe</label>
                   <input class="form-control" type="password" name="Mdp" value="<?php if(isset($Mdp)){echo $Mdp;}?>" placeholder="Mot de passe">
               </div>
-
+              <div class="mb-3">
+                <a href="motdepasse.php">Mot de passe oublié</a>
+              </div>
 
                 <div class="p-2">
                   <button class="btn btn-primary" name="connexion">Envoyer</button>
