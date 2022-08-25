@@ -29,7 +29,7 @@
                     }else{
                 ?>
                      <div class="p-2">
-                        <a href="inscription.php"><button type="button" class="btn btn-outline-primary">Mon profil</button></a> 
+                        <a href="profil.php"><button type="button" class="btn btn-outline-primary">Mon profil</button></a> 
                     </div>
                     <div class="p-2">
                         <a class="btn btn-primary" href="déconnexion.php" role="button">Déconnexion</a>

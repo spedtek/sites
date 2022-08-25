@@ -3,7 +3,7 @@
 include_once('_BDD/include.php');
 
 if(isset($_SESSION['id'])){
-  $var = "Bonjour" . ' ' .$_SESSION['prénom'];
+  $var = "Bonjour" . ' ' .($_SESSION['id']) ;
 }else{
   $var = "Bonjour à tous";
 }
@@ -24,6 +24,10 @@ if(isset($_SESSION['id'])){
     <?php
         include_once('menu/menu.php');
     ?>
+    <div class="row">
+      <div class="col-3"> <img src="recrut1.jpg" class="img-fluid rounded-start" alt="..."></div>
+      <div class="card-body col-9"></div>   
+    </div>
   <h1>
     <?= $var ?>
   </h1>

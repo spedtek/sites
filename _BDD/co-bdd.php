@@ -31,6 +31,11 @@
   $BDD = new connexionBDD();
 
   $BDD = $BDD->BDD();
+  
+
+  $BDD2 = new connexionBDD();
+
+  $BDD2 = $BDD2->BDD();
 
 
 ?>
