@@ -1,9 +1,10 @@
 <?php
-include_once('_BDD/include.php');
+include_once('../_BDD/include.php');
+
 
 
 if(isset($_SESSION['id'])){
-  header('Location: index.php');
+  header('Location: ../menu/index.php');
   exit;
 }
 
@@ -91,7 +92,7 @@ if(!empty($_POST)){
   <body>
 
     <?php 
-        include_once('menu/menu.php'); 
+        include_once('../menu/menu.php'); 
     ?>
 
     <div class="recruteur">

@@ -1,9 +1,9 @@
 <?php
 
-include_once('_BDD/include.php');
+include_once('../_BDD/include.php');
 
 if(isset($_SESSION['id'])){
-  header('Location: index.php');
+  header('Location: ../menu/index.php');
   exit;
 }
 if(!empty($_POST)){
@@ -80,7 +80,7 @@ if(!empty($_POST)){
   <body>
 
     <?php 
-        include_once('menu/menu.php'); 
+        include_once('../menu/menu.php'); 
     ?>
      <div class="recruteur">
         <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>
@@ -114,7 +114,10 @@ if(!empty($_POST)){
           </div>
           <div class="p-2">
                 <button class="btn btn-primary" name="inscriptionrecruteur">Envoyer</button>
-          </div>   
+          </div>  
+          <div>
+              <a href="connexion_rec.php">Déjà inscrit</a>
+          </div>      
         </form>
       </div>     
         </div>

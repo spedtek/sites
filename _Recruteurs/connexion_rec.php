@@ -1,9 +1,9 @@
 <?php
-include_once('_BDD/include.php');
+include_once('../_BDD/include.php');
 
 
 if(isset($_SESSION['id'])){
-  header('Location: index.php');
+  header('Location: ../menu/index.php');
   exit;
 }
 
@@ -68,7 +68,7 @@ if(!empty($_POST)){
             $_SESSION ['Emailrecruteur'] = $verif_utilisateur1['Emailrecruteur'];
     
             
-            header('Location: index.php');
+            header('Location: ../menu/index.php');
             exit;
         }else{
             $valid1 = false;
@@ -93,7 +93,7 @@ if(!empty($_POST)){
   <body>
 
     <?php 
-        include_once('menu/menu.php'); 
+        include_once('../menu/menu.php'); 
     ?>
       <div class="recruteur">
         <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>

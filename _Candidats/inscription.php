@@ -1,9 +1,10 @@
 <?php
 
-include_once('_BDD/include.php');
+include_once('../_BDD/include.php');
+
 
 if(isset($_SESSION['id'])){
-  header('Location: index.php');
+  header('Location: ../menu/index.php');
   exit;
 }
 
@@ -51,7 +52,7 @@ if(!empty($_POST)){
         }else{
           echo 'Le mot de passe est invalide!';
         }
-        $req = $BDD->prepare("INSERT INTO utilisateurs(nom, prenom, email, mdp) VALUES (?,?,?,?)");
+        $req = $BDD->prepare("INSERT INTO utilisateurs(nom, prenom, email, mdp, cv) VALUES (?,?,?,?,?)");
         $req->execute(array($Nom, $Prénom, $Email, $Mdp));
 
         header('Location: connexion.php');
@@ -74,7 +75,7 @@ if(!empty($_POST)){
     </head>
 
   <body>
-    <?php include_once('menu/menu.php'); ?>
+    <?php include_once('../menu/menu.php'); ?>
 
     <div class="recruteur">
         <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>
@@ -121,17 +122,13 @@ if(!empty($_POST)){
       <label for="confirmation password" class="password">Confirmation mot de passe</label>
       <input class="form-control" type="password" name="Confirmmdp" value="<?php if(isset($Confirmmdp)){echo $Confirmmdp;}?>" placeholder="confirmation password">
     </div>
-
-    <div class="mb-3">
-      <?php if(isset($err_cv)){echo '<div>' . $err_cv . '</div>';}?>
-      <label for="formFile" class="form-label">Télécharger mon CV</label>
-      <input class="form-control" type="file" name="CV" value="<?php if(isset($CV)){echo $CV;}?>" placeholder="télécharger votre CV">
-    </div>
 -->
+   
+
     <div class="p-2">
       <button class="btn btn-primary" name="inscription">Envoyer</button>
     </div>
-                    
+     
 </form>
             </div>
         </div>
