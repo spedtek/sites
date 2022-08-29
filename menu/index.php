@@ -53,7 +53,7 @@ if(isset($_SESSION['id'])){
           <a class="btn btn-primary" href="../_Consultants/consultants.php" role="button">Acces réservé aux consultants</a>
           </div>
           <div class="col">
-            <a class="btn btn-primary" href="../_Administrateur/admin.php" role="button">Acces réservé aux administrateurs</a>
+            <a class="btn btn-primary" href="../_Administrateur/connexion_admin.php" role="button">Acces réservé aux administrateurs</a>
           </div>
 
         </div>

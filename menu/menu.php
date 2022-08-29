@@ -32,7 +32,7 @@
                         <a href="../_Candidats/profil.php"><button type="button" class="btn btn-outline-primary">Mon profil</button></a> 
                     </div>
                     <div class="p-2">
-                        <a class="btn btn-primary" href="déconnexion.php" role="button">Déconnexion</a>
+                        <a class="btn btn-primary" href="../_Candidats/deconnexion.php" role="button">Déconnexion</a>
                     </div> 
                     <?php     
                     }
