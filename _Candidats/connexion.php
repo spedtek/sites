@@ -4,7 +4,7 @@ include_once('../_BDD/include.php');
 
 
 if(isset($_SESSION['id'])){
-  header('Location: ../menu/index.php');
+  header('Location: profil.php');
   exit;
 }
 
@@ -65,11 +65,11 @@ if(!empty($_POST)){
         $req->execute(array($date_connexion, $verif_utilisateur['id']));
       
         $_SESSION ['id'] = $verif_utilisateur['id'];
-        $_SESSION ['prénom'] = $verif_utilisateur['prenom'];
+        $_SESSION ['Nom'] = $verif_utilisateur['nom'];
         $_SESSION ['email'] = $verif_utilisateur['email'];
   
           
-        header('Location: index.php');
+        header('Location: profil.php');
         exit;
       }else{
         $valid = false;

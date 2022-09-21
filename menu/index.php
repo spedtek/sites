@@ -4,7 +4,7 @@ include_once('../_BDD/include.php');
 
 
 if(isset($_SESSION['id'])){
-  $var = "Bonjour " . $_SESSION['prénom'] ;
+  $var = "Bonjour " . $_SESSION['Nom'] ;
 }else{
   $var = "Bonjour à tous";
 }

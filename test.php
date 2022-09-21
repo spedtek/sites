@@ -3,7 +3,7 @@ include_once('../_BDD/include.php');
 
 
 if(isset($_SESSION['id'])){
-  header('Location: profil_recruteur.php');
+  header('Location: ../menu/index.php');
   exit;
 }
 
@@ -68,7 +68,7 @@ if(!empty($_POST)){
             $_SESSION ['Emailrecruteur'] = $verif_utilisateur1['Emailrecruteur'];
     
             
-            header('Location: profil_recruteur.php');
+            header('Location: ../menu/index.php');
             exit;
         }else{
             $valid1 = false;

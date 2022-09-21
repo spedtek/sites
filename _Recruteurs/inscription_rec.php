@@ -2,7 +2,7 @@
 
 include_once('../_BDD/include.php');
 
-if(isset($_SESSION['id'])){
+if(isset($_SESSION['id_recruteur'])){
   header('Location: ../menu/index.php');
   exit;
 }

@@ -26,6 +26,8 @@
     public function BDD(){
         return $this->connexion;
     }
+
+
   }
 
   $BDD = new connexionBDD();

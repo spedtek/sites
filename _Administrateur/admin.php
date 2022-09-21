@@ -15,7 +15,7 @@ $req3 = $BDD->prepare("SELECT *
 
         $req_profil = $req3->fetch();
     
-    switch($req_profil['role']){
+    switch($req_profil['id_role']){
         case 0;
             $role = "Profil candidat en attente de validation";
         break;
@@ -55,29 +55,66 @@ $req3 = $BDD->prepare("SELECT *
         | Spécialiste du recrutement dans l'hotellerie et la restauration </p>
     </div>
     </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1>Bonjour <?= $req_profil['nom_admin']?></h1>
-                    <div>
-                        Titulaire du compte : <?= $req_profil['nom_admin']?>
-                    </div>
-                    <div>
-                        Adresse E-mail : <?= $req_profil['email_admin'] ?>
-                    </div>
-                    <div>
-                        Role utilisateur : <?= $role ?>
-                    </div>
-                    <div class="mb-2">
-                        <a  class="btn btn-primary" href="modifier-compte.php">Modifier mon compte</a>
-                    </div>
-                    <div>
-                        <p>Votre profil permet de créer un consultant</p>
-                        <a  class="btn btn-primary" href="../_Consultants/inscription_consultant.php">Création d'un profil consultant</a>
-                    </div>
-                </div>
+        <h1 class = "mb-5" style="text-align : center">Bonjour <?= $req_profil['nom_admin']?></h1>
+        <div class="container text-center">
+          <h2>Votre profil</h2>
+          <div class="row justify-content-center">
+            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
+              <div>
+                Titulaire du compte : <?= $req_profil['nom_admin']?>
+              </div>
+              <div>
+                Adresse E-mail : <?= $req_profil['email_admin'] ?>
+              </div>
+              <div>
+                Role utilisateur : <?= $role ?>
+              </div>
             </div>
+            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
+              <p>Votre profil permet de créer un consultant</p>
+              <a  class="btn btn-primary" href="../_Consultants/inscription_consultant.php">Création d'un profil consultant</a>
+          </div>
         </div>
+
+        <h2 style="margin-top: 10px">Les offres d'emploi</h2>
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
+              <div>
+                Titulaire du compte : <?= $req_profil['nom_admin']?>
+              </div>
+              <div>
+                Adresse E-mail : <?= $req_profil['email_admin'] ?>
+              </div>
+              <div>
+                Role utilisateur : <?= $role ?>
+              </div>
+              <div class="mb-2">
+                <a  class="btn btn-primary" href="modifier-compte.php">Modifier mon compte</a>
+              </div>
+            </div>
+            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
+              <a  class="btn btn-primary" href="../menu/offres.php" style="margin-top: 20px;">Voir toutes les offres d'emplois</a>
+          </div>
+        </div>
+
+
+        <h2 style="margin-top: 10px">Les membres</h2>
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
+              <div class="mb-2">
+                <a  class="btn btn-primary" href="modifier_profil.php" style="margin-top: 10px;">Valider le profil des utilisateurs</a>
+              </div>
+            </div>
+            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
+              <a  class="btn btn-primary" href="../menu/offres.php" style="margin-top: 20px;">Voir tous les membres</a>
+          </div>
+        </div>
+
+
+
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     </body>
 </html>

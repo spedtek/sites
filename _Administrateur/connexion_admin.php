@@ -3,7 +3,7 @@ include_once('../_BDD/include.php');
 
 
 
-if(isset($_SESSION['id_admin'])){
+if(isset($_SESSION['id'])){
   header('Location: admin.php');
   exit;
 }
@@ -65,7 +65,7 @@ if(!empty($_POST)){
         $req3->execute(array($date_connexion_admin, $verif_utilisateur_admin['id']));
       
         $_SESSION ['id'] = $verif_utilisateur_admin['id_admin'];
-        $_SESSION ['prénom'] = $verif_utilisateur_admin['prenom_admin'];
+        $_SESSION ['Nom'] = $verif_utilisateur_admin['nom_admin'];
         $_SESSION ['email'] = $verif_utilisateur_admin['email_admin'];
   
           

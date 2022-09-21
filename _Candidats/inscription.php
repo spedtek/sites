@@ -45,15 +45,21 @@ if(!empty($_POST)){
        }
        if ($valid){
 
-        $crypt_password = password_hash($Mdp, PASSWORD_ARGON2ID);
 
-        if (password_verify($Mdp, $crypt_password)){
-          echo 'Le mot de passe est valide !';
-        }else{
-          echo 'Le mot de passe est invalide!';
-        }
-        $req = $BDD->prepare("INSERT INTO utilisateurs(nom, prenom, email, mdp, cv) VALUES (?,?,?,?,?)");
+
+
+
+
+
+        $Mdp = crypt($Mdp, '$6$rounds=5000$macleapersonnaliseretagardersecret$');
+
+
+        $req = $BDD->prepare("INSERT INTO utilisateurs (nom, prenom, email, mdp) VALUES
+        (?, ?, ?, ?)");
         $req->execute(array($Nom, $Prénom, $Email, $Mdp));
+
+        //$req = $BDD->prepare("INSERT INTO utilisateurs(nom, prenom, email, mdp) VALUES (?,?,?,?)");
+        //$req->execute(array($Nom, $Prénom, $Email, $Mdp));
 
         header('Location: connexion.php');
         exit;
@@ -103,27 +109,12 @@ if(!empty($_POST)){
       <label for="email" class="form-label">E-mail</label>
       <input class="form-control" type="text" name="Email" value="<?php if(isset($Email)){echo $Email;}?>" placeholder="E-mail">
     </div>
-    <!--
-    <div class="mb-3">
-      <?php if(isset($err_confirmemail)){echo '<div>' . $err_confirmemail . '</div>';}?>
-      <label for="email" class="form-label">Confirmation e-mail</label>
-      <input class="form-control" type="text" name="Confirmmail" value="<?php if(isset($Confirmmail)){echo $Confirmmail;}?>" placeholder="Confirmation e-mail">
-    </div>
--->
+
     <div class="mb-3">
       <?php if(isset($err_mdp)){echo '<div>' . $err_mdp . '</div>';}?>
       <label for="password" class="password">Mot de passe</label>
       <input class="form-control" type="password" name="Mdp" value="<?php if(isset($Mdp)){echo $Mdp;}?>" placeholder="Mot de passe">
     </div>
-
-  <!--
-    <div class="mb-3">
-      <?php if(isset($err_confirmmdp)){echo '<div>' . $err_confirmmdp . '</div>';}?>
-      <label for="confirmation password" class="password">Confirmation mot de passe</label>
-      <input class="form-control" type="password" name="Confirmmdp" value="<?php if(isset($Confirmmdp)){echo $Confirmmdp;}?>" placeholder="confirmation password">
-    </div>
--->
-   
 
     <div class="p-2">
       <button class="btn btn-primary" name="inscription">Envoyer</button>

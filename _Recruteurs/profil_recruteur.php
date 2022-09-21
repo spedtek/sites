@@ -5,15 +5,15 @@
         header('Location: ../menu/index.php'); 
         exit; 
     }
-    $req = $BDD->prepare("SELECT *
-    FROM utilisateurs
+    $req1 = $BDD->prepare("SELECT *
+    FROM recruteurs
     WHERE id = ?");
 
-        $req->execute([$_SESSION['id']]);
+        $req1->execute([$_SESSION['id']]);
 
-        $req_profil = $req->fetch();
+        $req_profil_rec = $req1->fetch();
     
-    switch($req_profil['id_role']){
+    switch($req_profil_rec['id_role']){
         case 0;
             $role = "Profil candidat en attente de validation";
         break;
@@ -33,13 +33,6 @@
             $role = "Profil administrateur";
         break;
     }
-    $req2 = $BDD->prepare("SELECT *
-    FROM cv
-    WHERE id = ?");
-
-        $req2->execute([$_SESSION['id']]);
-
-        $req_profil2 = $req2->fetch();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -58,27 +51,31 @@
             <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>
             | Spécialiste du recrutement dans l'hotellerie et la restauration </p>
         </div>
-        <div class="container">
+        <div class="container mb-5">
             <div class="row">
                 <div class="col-12">
-                    <h1>Bonjour <?= $req_profil['nom']?></h1>
+                    <h1>Bonjour <?= $req_profil_rec['Nomrecruteur']?></h1>
                     <div>
-                        Titulaire du compte : <?= $req_profil['nom']?>
+                        Titulaire du compte : <?= $req_profil_rec['Nomrecruteur']?>
                     </div>
                     <div>
-                        Adresse E-mail : <?= $req_profil['email'] ?>
+                        Adresse E-mail : <?= $req_profil_rec['Emailrecruteur'] ?>
                     </div>
                     <div>
                         Role utilisateur : <?= $role ?>
-                    </div>
-                    <div>
-                        CV : <?= $req_profil2['nom'] ?>
                     </div>
                     <div>
                         <a href="modifier-compte.php">Modifier mon compte</a>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+            <h2>Toutes mes offres</h2>
+            <a href="publier_annonce.php"><button class="btn btn-primary">Publier une offre d'emploi</button></a>
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

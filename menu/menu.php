@@ -7,18 +7,18 @@
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <?php
+                    if(!isset($_SESSION['id'])){
+                ?> 
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item fw-bold">
-                <a class="nav-link " aria-current="page" href="offres.php">Offres</a>
+                <a class="nav-link " aria-current="page" href="../menu/offres.php">Offres</a>
                 </li>
                 <li class="nav-item fw-bold">
                 <a class="nav-link" href="#">Mes candidatures</a>
                 </li>
-            </ul>
+                </ul>
             <div class= d-flex>
-                <?php
-                    if(!isset($_SESSION['id'])){
-                ?> 
                     <div class="p-2">
                         <a href="../_Candidats/inscription.php"><button type="button" class="btn btn-outline-primary">Inscription</button></a> 
                     </div>
@@ -27,20 +27,15 @@
                     </div>   
                 <?php     
                     }else{
-                ?>
-                     <div class="p-2">
-                        <a href="../_Candidats/profil.php"><button type="button" class="btn btn-outline-primary">Mon profil</button></a> 
-                    </div>
+                ?>              
                     <div class="p-2">
-                        <a class="btn btn-primary" href="../_Candidats/deconnexion.php" role="button">Déconnexion</a>
+                        <a class="btn btn-primary" href="../deconnexion.php" role="button">Déconnexion</a>
                     </div> 
-                    <?php     
-                    }
-                ?>
-   
 
-                
-            </div>
-            </div>
+<?php
+                    }
+                    ?>
+
         </div>
-    </nav>
+    </div>
+</nav>

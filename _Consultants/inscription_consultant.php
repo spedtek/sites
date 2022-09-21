@@ -2,11 +2,11 @@
 
 include_once('../_BDD/include.php');
 
-
-if(isset($_SESSION['id'])){
-  header('Location: ../Menu/index.php');
+if(!isset($_SESSION['id'])){
+  header('Location: ../menu/index.php');
   exit;
 }
+
 
 if(!empty($_POST)){
     extract($_POST);
@@ -21,15 +21,15 @@ if(!empty($_POST)){
 
        if(empty($Nom_consultant)){
         $valid5 = false;
-        $err_nom_consultant = "Ce champ ne peut pas être vide";
+        $err_nom_consultant = "1";
        }
        if(empty($Prénom_consultant)){
         $valid5 = false;
-        $err_prénom_consultant = "Ce champ ne peut pas être vide";
+        $err_prénom_consultant = "2";
        }
        if(empty($Email_consultant)){
         $valid5 = false;
-        $err_email_consultant = "Ce champ ne peut pas être vide";
+        $err_email_consultant = "3";
        }else{
         $req4 = $BDD->prepare("SELECT id
         FROM consultants
@@ -41,16 +41,16 @@ if(!empty($_POST)){
 
        if(empty($Mdp_consultant)){
         $valid5 = false;
-        $err_mdp_consultant = "Ce champ ne peut pas être vide";
+        $err_mdp_consultant = "4";
        }
        if ($valid5){
 
         $crypt_password = password_hash($Mdp_consultant, PASSWORD_ARGON2ID);
 
         if (password_verify($Mdp_consultant, $crypt_password)){
-          echo 'Le mot de passe est valide !';
+          echo '5!';
         }else{
-          echo 'Le mot de passe est invalide!';
+          echo '6!';
         }
         $req4 = $BDD->prepare("INSERT INTO consultants(nom_consultant, prenom_consultant, email_consultant, mdp_consultant) VALUES (?,?,?,?)");
         $req4->execute(array($Nom_consultant, $Prénom_consultant, $Email_consultant, $Mdp_consultant));
@@ -58,7 +58,7 @@ if(!empty($_POST)){
         header('Location: consultant.php');
         exit;
        }else{
-          echo 'des champs du questionnaire sont manquants';
+          echo '7';
        }
     }
 }
