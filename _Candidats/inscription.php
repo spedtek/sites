@@ -45,12 +45,6 @@ if(!empty($_POST)){
        }
        if ($valid){
 
-
-
-
-
-
-
         $Mdp = crypt($Mdp, '$6$rounds=5000$macleapersonnaliseretagardersecret$');
 
 

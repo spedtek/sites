@@ -2,7 +2,7 @@
 
 include_once('../_BDD/include.php');
 
-if(!isset($_SESSION['id'])){
+if(isset($_SESSION['id_consultant'])){
   header('Location: ../menu/index.php');
   exit;
 }
@@ -13,21 +13,21 @@ if(!empty($_POST)){
 
     $valid5 = (boolean) true;
 
-    if(isset($_POST['inscription_consultant'])){
-       $Nom_consultant = trim($Nom_consultant);
-       $Prénom_consultant = trim($Prénom_consultant);
-       $Email_consultant = trim($Email_consultant);
-       $Mdp_consultant = trim($Mdp_consultant);
+    if(isset($_POST['inscriptionconsultant'])){
+       $Nomconsultant = trim($Nomconsultant);
+       $Prénomconsultant = trim($Prénomconsultant);
+       $Emailconsultant = trim($Emailconsultant);
+       $Mdpconsultant = trim($Mdpconsultant);
 
-       if(empty($Nom_consultant)){
+       if(empty($Nomconsultant)){
         $valid5 = false;
         $err_nom_consultant = "1";
        }
-       if(empty($Prénom_consultant)){
+       if(empty($Prénomconsultant)){
         $valid5 = false;
         $err_prénom_consultant = "2";
        }
-       if(empty($Email_consultant)){
+       if(empty($Emailconsultant)){
         $valid5 = false;
         $err_email_consultant = "3";
        }else{
@@ -35,25 +35,25 @@ if(!empty($_POST)){
         FROM consultants
         where email_consultant = ?");
 
-        $req4->execute(array($Email_consultant));
+        $req4->execute(array($Emailconsultant));
         
         $req4 = $req4->fetch();
 
-       if(empty($Mdp_consultant)){
+       if(empty($Mdpconsultant)){
         $valid5 = false;
         $err_mdp_consultant = "4";
        }
        if ($valid5){
 
-        $crypt_password = password_hash($Mdp_consultant, PASSWORD_ARGON2ID);
+        $crypt_password = password_hash($Mdpconsultant, PASSWORD_ARGON2ID);
 
-        if (password_verify($Mdp_consultant, $crypt_password)){
+        if (password_verify($Mdpconsultant, $crypt_password)){
           echo '5!';
         }else{
           echo '6!';
         }
         $req4 = $BDD->prepare("INSERT INTO consultants(nom_consultant, prenom_consultant, email_consultant, mdp_consultant) VALUES (?,?,?,?)");
-        $req4->execute(array($Nom_consultant, $Prénom_consultant, $Email_consultant, $Mdp_consultant));
+        $req4->execute(array($Nomconsultant, $Prénomconsultant, $Emailconsultant, $Mdpconsultant));
 
         header('Location: consultant.php');
         exit;
@@ -91,17 +91,17 @@ if(!empty($_POST)){
       <div class="mb-3">
         <?php if(isset($err_nom_consultant)){echo '<div>' . $err_nom_consultant . '</div>';}?>
         <label class="form-label">Nom</label>
-        <input class="form-control" type="text" name="Nom" value="<?php if(isset($Nom_consultant)){echo $Nom_consultant;}?>" placeholder="Nom">
+        <input class="form-control" type="text" name="Nom" value="<?php if(isset($Nomconsultant)){echo $Nomconsultant;}?>" placeholder="Nom">
       </div>
     <div class="mb-3" >
       <?php if(isset($err_prénom_consultant)){echo '<div>' . $err_prénom_consultant . '</div>';}?>
       <label for="firstname" class="form-label">Prénom</label>
-      <input class="form-control" type="text" name="Prénom" value="<?php if(isset($Prénom_consultant)){echo $Prénom_consultant;}?>" placeholder="Prénom">
+      <input class="form-control" type="text" name="Prénom" value="<?php if(isset($Prénomconsultant)){echo $Prénomconsultant;}?>" placeholder="Prénom">
     </div>
     <div class="mb-3">
       <?php if(isset($err_email_consultant)){echo '<div>' . $err_email_consultant . '</div>';}?>
       <label for="email" class="form-label">E-mail</label>
-      <input class="form-control" type="text" name="Email" value="<?php if(isset($Email_consultant)){echo $Email_consultant;}?>" placeholder="E-mail">
+      <input class="form-control" type="text" name="Email" value="<?php if(isset($Emailconsultant)){echo $Emailconsultant;}?>" placeholder="E-mail">
     </div>
     <!--
     <div class="mb-3">
@@ -113,7 +113,7 @@ if(!empty($_POST)){
     <div class="mb-3">
       <?php if(isset($err_mdp_consultant)){echo '<div>' . $err_mdp_consultant . '</div>';}?>
       <label for="password" class="password">Mot de passe</label>
-      <input class="form-control" type="password" name="Mdp" value="<?php if(isset($Mdp_consultant)){echo $Mdp_consultant;}?>" placeholder="Mot de passe">
+      <input class="form-control" type="password" name="Mdp" value="<?php if(isset($Mdpconsultant)){echo $Mdpconsultant;}?>" placeholder="Mot de passe">
     </div>
 
   <!--
@@ -126,7 +126,7 @@ if(!empty($_POST)){
    
 
     <div class="p-2">
-      <button class="btn btn-primary" name="inscription_consultant">Créer</button>
+      <button class="btn btn-primary" name="inscriptionconsultant">Créer</button>
     </div>
      
 </form>

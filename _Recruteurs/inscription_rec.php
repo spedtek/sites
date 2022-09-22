@@ -47,7 +47,7 @@ if(!empty($_POST)){
     }
     if ($valid2){
 
-      $crypt_password_rec = password_hash($Mdprecruteur, PASSWORD_ARGON2ID);
+      $Mdprecruteur = crypt($Mdprecruteur, '$6$rounds=5000$macleapersonnaliseretagardersecret$');
 
       if (password_verify($Mdprecruteur, $crypt_password_rec)){
         echo 'Le mot de passe est valide !';

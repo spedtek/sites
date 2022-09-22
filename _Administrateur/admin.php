@@ -80,21 +80,15 @@ $req3 = $BDD->prepare("SELECT *
         <div class="container text-center">
           <div class="row justify-content-center">
             <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
-              <div>
-                Titulaire du compte : <?= $req_profil['nom_admin']?>
-              </div>
-              <div>
-                Adresse E-mail : <?= $req_profil['email_admin'] ?>
-              </div>
-              <div>
-                Role utilisateur : <?= $role ?>
-              </div>
               <div class="mb-2">
-                <a  class="btn btn-primary" href="modifier-compte.php">Modifier mon compte</a>
+                <a  class="btn btn-primary" href="modifier-compte.php">Validation des candidatures</a>
               </div>
             </div>
-            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
-              <a  class="btn btn-primary" href="../menu/offres.php" style="margin-top: 20px;">Voir toutes les offres d'emplois</a>
+                <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
+                <div class="mb-2"> 
+                <a  class="btn btn-primary" href="../menu/offres.php" style="margin-top: 20px;">Validation des offres d'emploi</a>
+              </div>
+            
           </div>
         </div>
 
@@ -104,11 +98,11 @@ $req3 = $BDD->prepare("SELECT *
           <div class="row justify-content-center">
             <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
               <div class="mb-2">
-                <a  class="btn btn-primary" href="modifier_profil.php" style="margin-top: 10px;">Valider le profil des utilisateurs</a>
+                <a  class="btn btn-primary" href="../_Validations/voir_candidats.php" style="margin-top: 10px;">Valider le profil des candidats</a>
               </div>
             </div>
             <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
-              <a  class="btn btn-primary" href="../menu/offres.php" style="margin-top: 20px;">Voir tous les membres</a>
+              <a  class="btn btn-primary" href="../_Validations/voir_recruteurs.php" style="margin-top: 20px;">Valider le profil des recruteurs</a>
           </div>
         </div>
 

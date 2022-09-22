@@ -13,7 +13,7 @@
 
         $req_profil = $req->fetch();
     
-    switch($req_profil['id_role']){
+    switch($req_profil['id']){
         case 0;
             $role = "Profil candidat en attente de validation";
         break;
@@ -72,7 +72,7 @@
                         Role utilisateur : <?= $role ?>
                     </div>
                     <div>
-                        CV : <?= $req_profil2['nom'] ?>
+                        CV : <?= $req_profil['nom'] ?>
                     </div>
                     <div>
                         <a href="modifier-compte.php">Modifier mon compte</a>
