@@ -2,11 +2,10 @@
 
 include_once('../_BDD/include.php');
 
-if(isset($_SESSION['id_consultant'])){
+if(!isset($_SESSION['id'])){
   header('Location: ../menu/index.php');
   exit;
 }
-
 
 if(!empty($_POST)){
     extract($_POST);
@@ -14,10 +13,10 @@ if(!empty($_POST)){
     $valid5 = (boolean) true;
 
     if(isset($_POST['inscriptionconsultant'])){
-       $Nomconsultant = trim($Nomconsultant);
-       $Prénomconsultant = trim($Prénomconsultant);
-       $Emailconsultant = trim($Emailconsultant);
-       $Mdpconsultant = trim($Mdpconsultant);
+      $Nomconsultant = trim($Nomconsultant);
+      $Prénomconsultant = trim($Prénomconsultant);
+      $Emailconsultant = trim($Emailconsultant);
+      $Mdpconsultant = trim($Mdpconsultant);
 
        if(empty($Nomconsultant)){
         $valid5 = false;
@@ -86,7 +85,7 @@ if(!empty($_POST)){
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-            <h1 class="col-md-3 mx-auto mx-auto">Formulaire d'inscription</h1>
+            <h1 class="col-md-3 mx-auto mx-auto">Formulaire d'inscription consultant</h1>
     <form method="post">
       <div class="mb-3">
         <?php if(isset($err_nom_consultant)){echo '<div>' . $err_nom_consultant . '</div>';}?>

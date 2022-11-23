@@ -80,7 +80,7 @@ if(!empty($_POST)){
   <body>
 
     <?php 
-        include_once('../menu/menu.php'); 
+        include_once('menu-admin.php'); 
     ?>
      <div class="recruteur">
         <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>

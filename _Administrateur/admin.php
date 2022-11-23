@@ -46,10 +46,10 @@ $req3 = $BDD->prepare("SELECT *
     </head>
   <body>
 
-    <?php 
-        include_once('../menu/menu.php'); 
+  <?php
+      require_once('menu-admin.php');    
     ?>
-
+ 
     <div class="recruteur">
         <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>
         | Spécialiste du recrutement dans l'hotellerie et la restauration </p>
@@ -72,7 +72,7 @@ $req3 = $BDD->prepare("SELECT *
             </div>
             <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
               <p>Votre profil permet de créer un consultant</p>
-              <a  class="btn btn-primary" href="../_Consultants/inscription_consultant.php">Création d'un profil consultant</a>
+              <a  class="btn btn-primary" href="creation_consultant.php">Création d'un profil consultant</a>
           </div>
         </div>
 
