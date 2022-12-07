@@ -87,15 +87,16 @@
                 ?>           
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item fw-bold">
+                    <a class="nav-link " aria-current="page" href="profil.php">Mon profil</a>
+                    </li>
+                    <li class="nav-item fw-bold">
                     <a class="nav-link " aria-current="page" href="../menu/offres.php">Offres</a>
                     </li>
                     <li class="nav-item fw-bold">
                     <a class="nav-link" href="#">Mes candidatures</a>
                     </li>
                     </ul>   
-                    <div class="p-2">
-                        <a href="profil.php"><button type="button" class="btn btn-outline-primary">Mon profil</button></a> 
-                    </div>
+
                     <div class="p-2">
                         <a class="btn btn-primary" href="../deconnexion.php" role="button">Déconnexion</a>
                     </div> 
@@ -111,28 +112,37 @@
             <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>
             | Spécialiste du recrutement dans l'hotellerie et la restauration </p>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1>Bonjour <?= $req_profil['nom']?></h1>
-                    <div>
-                        Titulaire du compte : <?= $req_profil['nom']?>
-                    </div>
-                    <div>
-                        Adresse E-mail : <?= $req_profil['email'] ?>
-                    </div>
-                    <div>
-                        Role utilisateur :  <?= $role ?>
-                    </div>
-                    <div>
-                        CV : <?= $req_profil['nom'] ?>
-                    </div>
-                    <div>
-                        <a href="modifier-compte.php">Modifier mon compte</a>
-                    </div>
-                </div>
-            </div>
 
+        <div class="container">
+            <div class="row">	
+            <div class="col-sm-0 col-md-0 col-lg-0"></div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="cdr-ins">
+                <h1 style="text-align: center;">Ma page de profil</h1> <br/>
+
+            <div style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; text-align:center;">
+
+                <h2>Bonjour <?= $req_profil['nom']?></h2>
+            <div>
+            Titulaire du compte : <?= $req_profil['nom']?>
+            </div>
+            <div>
+            Adresse E-mail : <?= $req_profil['email'] ?>
+            </div>
+            <div>
+            Role utilisateur : <?= $role ?>
+            </div>
+            <div>
+                CV : <?= $req_profil['nom'] ?>
+            </div>
+            <div>
+            <a href="modifier-compte.php">Modifier mon compte</a>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     </body>

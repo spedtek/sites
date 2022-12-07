@@ -92,9 +92,12 @@ if(!empty($_POST)){
     </head>
   <body>
 
-    <?php 
-        include_once('../menu/menu.php'); 
-    ?>
+  <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a href="../menu/index.php"><img src="../images/logo.jpg" alt="logo du site" width="100" height="100"></a>    
+        </div>
+    </nav>
+    
       <div class="recruteur">
         <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>
         | Spécialiste du recrutement dans l'hotellerie et la restauration </p>

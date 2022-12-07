@@ -12,7 +12,7 @@
                 ?> 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item fw-bold">
-                <a class="nav-link " aria-current="page" href="../menu/offres.php">Offres</a>
+                <a class="nav-link " aria-current="page" href="../_Recruteurs/offres.php">Offres</a>
                 </li>
                 <li class="nav-item fw-bold">
                 <a class="nav-link" href="#">Mes candidatures</a>
@@ -30,7 +30,7 @@
                 ?>           
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item fw-bold">
-                    <a class="nav-link " aria-current="page" href="../menu/offres.php">Offres</a>
+                    <a class="nav-link " aria-current="page" href="../_Recruteurs/offres.php">Offres</a>
                     </li>
                     <li class="nav-item fw-bold">
                     <a class="nav-link" href="#">Mes candidatures</a>

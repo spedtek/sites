@@ -4,7 +4,7 @@ include_once('../_BDD/include.php');
 
 
 if(isset($_SESSION['id'])){
-  header('Location: profil.php');
+  header('Location: consultants.php');
   exit;
 }
 
@@ -12,29 +12,29 @@ if(!empty($_POST)){
   extract($_POST);
   $valid = (boolean) true;
 
-  if(isset($_POST['connexion'])){
-    $Email = trim($Email);
-    $Mdp = trim($Mdp);
+  if(isset($_POST['connexion-consultant'])){
+    $Email_consultant = trim($Email_consultant);
+    $Mdp_consultant = trim($Mdp_consultant);
 
-    if(empty($Email)){
+    if(empty($Email_consultant)){
       $valid = false;
-      $err_email = "Ce champ ne peut pas être vide";
+      $err_email_consultant = "Ce champ ne peut pas être vide";
     }else{
       $req = $BDD->prepare("SELECT id
         FROM utilisateurs
         WHERE email = ?");
       
-      $req->execute(array($Email));
-      $ulisateur = $req->fetch();
+      $req->execute(array($Email_consultant));
+      $consultant = $req->fetch();
 
-      if(!isset($ulisateur['id'])){
+      if(!isset($consultant['id'])){
         $valid = false;
-        $err_email = "Ce champ ne peut pas être vide";
+        $err_email_consultant = "Ce champ ne peut pas être vide";
       }
     }
-    if(empty($Mdp)){
+    if(empty($Mdp_consultant)){
       $valid = false;
-      $err_mdp = "Ce champ ne peut pas être vide";
+      $err_mdp_consultant = "Ce champ ne peut pas être vide";
 
       $req = $BDD->prepare("SELECT id
       FROM utilisateurs
@@ -42,38 +42,38 @@ if(!empty($_POST)){
     
   }
 
-    $req->execute(array($Email));
-    $verif_utilisateur = $req->fetch();
+    $req->execute(array($Email_consultant));
+    $verif_consultant = $req->fetch();
 
-    if(!isset($verif_utilisateur['id'])){
+    if(!isset($verif_consultant['id'])){
       $valid = false ; 
-      $err_email = "Ce champ ne peut pas être vide";
+      $err_email_consultant = "Ce champ ne peut pas être vide";
     }
     if($valid){
       $req = $BDD->prepare("SELECT *
       FROM utilisateurs
       WHERE email = ?");
 
-      $req->execute(array($Email));
+      $req->execute(array($Email_consultant));
 
-      $verif_utilisateur = $req->fetch();
+      $verif_consultant = $req->fetch();
 
-      if(isset($verif_utilisateur['id'])){
+      if(isset($verif_consultant['id'])){
         $date_connexion = date('Y-m-d H:i:s');
 
         $req = $BDD->prepare("UPDATE utilisateur SET date_connexion = ? WHERE id = ?");
-        $req->execute(array($date_connexion, $verif_utilisateur['id']));
+        $req->execute(array($date_connexion, $verif_consultant['id']));
       
         $_SESSION ['id'] = $verif_utilisateur['id'];
         $_SESSION ['Nom'] = $verif_utilisateur['nom'];
         $_SESSION ['email'] = $verif_utilisateur['email'];
   
           
-        header('Location: profil.php');
+        header('Location: consultant.php');
         exit;
       }else{
         $valid = false;
-        $err_email = "la combinaison Email/Mot de passe est incorrect";
+        $err_email_consultant = "la combinaison Email/Mot de passe est incorrect";
       }
 
       
@@ -113,14 +113,14 @@ if(!empty($_POST)){
               <div class="col-md-6 mx-auto" style="width: 500px;">
               
               <div class="mb-3">
-                  <?php if(isset($err_email)){echo '<div>' . $err_email . '</div>';}?>
+                  <?php if(isset($err_email_consultant)){echo '<div>' . $err_email_consultant . '</div>';}?>
                   <label for="email" class="form-label">E-mail</label>
-                  <input class="form-control" type="text" name="Email" value="<?php if(isset($Email)){echo $Email;}?>" placeholder="E-mail">
+                  <input class="form-control" type="text" name="Email" value="<?php if(isset($Email_consultant)){echo $Email_consultant;}?>" placeholder="E-mail">
               </div>
               <div class="mb-3">
-                  <?php if(isset($err_mdp)){echo '<div>' . $err_mdp . '</div>';}?>
+                  <?php if(isset($err_mdp_consultant)){echo '<div>' . $err_mdp_consultant . '</div>';}?>
                   <label for="password" class="password">Mot de passe</label>
-                  <input class="form-control" type="password" name="Mdp" value="<?php if(isset($Mdp)){echo $Mdp;}?>" placeholder="Mot de passe">
+                  <input class="form-control" type="password" name="Mdp" value="<?php if(isset($Mdp_consultant)){echo $Mdp_consultant;}?>" placeholder="Mot de passe">
               </div>
               <div class="mb-3">
                 <a href="motdepasse.php">Mot de passe oublié</a>
