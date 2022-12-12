@@ -81,12 +81,12 @@ $req3 = $BDD->prepare("SELECT *
           <div class="row justify-content-center">
             <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
               <div class="mb-2">
-                <a  class="btn btn-primary" href="modifier-compte.php">Validation des candidatures</a>
+                <a  class="btn btn-primary" href="../_Validations/validation_offres.php">Validation des candidatures</a>
               </div>
             </div>
                 <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
                 <div class="mb-2"> 
-                <a  class="btn btn-primary" href="../menu/offres.php" style="margin-top: 20px;">Validation des offres d'emploi</a>
+                <a  class="btn btn-primary" href="../_Validations/validation_offres.php" style="margin-top: 20px;">Validation des offres d'emploi</a>
               </div>
             
           </div>

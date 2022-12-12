@@ -12,19 +12,19 @@ if(!empty($_POST)){
   extract($_POST);
   $valid = (boolean) true;
 
-  if(isset($_POST['connexion-consultant'])){
-    $Email_consultant = trim($Email_consultant);
-    $Mdp_consultant = trim($Mdp_consultant);
+  if(isset($_POST['connexion_consultant'])){
+    $email_consultant = trim($email_consultant);
+    $mdp_consultant = trim($mdp_consultant);
 
-    if(empty($Email_consultant)){
+    if(empty($email_consultant)){
       $valid = false;
       $err_email_consultant = "Ce champ ne peut pas être vide";
     }else{
       $req = $BDD->prepare("SELECT id
-        FROM utilisateurs
-        WHERE email = ?");
+        FROM consultants
+        WHERE email_consultant = ?");
       
-      $req->execute(array($Email_consultant));
+      $req->execute(array($email_consultant));
       $consultant = $req->fetch();
 
       if(!isset($consultant['id'])){
@@ -32,17 +32,17 @@ if(!empty($_POST)){
         $err_email_consultant = "Ce champ ne peut pas être vide";
       }
     }
-    if(empty($Mdp_consultant)){
+    if(empty($mdp_consultant)){
       $valid = false;
       $err_mdp_consultant = "Ce champ ne peut pas être vide";
 
       $req = $BDD->prepare("SELECT id
-      FROM utilisateurs
-      WHERE email = ? AND mdp = ?");
+      FROM consultants
+      WHERE email_consultant = ? AND mdp_consultant = ?");
     
   }
 
-    $req->execute(array($Email_consultant));
+    $req->execute(array($email_consultant));
     $verif_consultant = $req->fetch();
 
     if(!isset($verif_consultant['id'])){
@@ -51,25 +51,25 @@ if(!empty($_POST)){
     }
     if($valid){
       $req = $BDD->prepare("SELECT *
-      FROM utilisateurs
-      WHERE email = ?");
+      FROM consultants
+      WHERE email_consultant = ?");
 
-      $req->execute(array($Email_consultant));
+      $req->execute(array($email_consultant));
 
       $verif_consultant = $req->fetch();
 
       if(isset($verif_consultant['id'])){
         $date_connexion = date('Y-m-d H:i:s');
 
-        $req = $BDD->prepare("UPDATE utilisateur SET date_connexion = ? WHERE id = ?");
+        $req = $BDD->prepare("UPDATE consultants SET date_connexion = ? WHERE id = ?");
         $req->execute(array($date_connexion, $verif_consultant['id']));
       
-        $_SESSION ['id'] = $verif_utilisateur['id'];
-        $_SESSION ['Nom'] = $verif_utilisateur['nom'];
-        $_SESSION ['email'] = $verif_utilisateur['email'];
+        $_SESSION ['id'] = $verif_consultant['id'];
+        $_SESSION ['nom_consultant'] = $verif_consultant['nom_consultant'];
+        $_SESSION ['email_consultant'] = $verif_consultant['email_consultant'];
   
           
-        header('Location: consultant.php');
+        header('Location: consultants.php');
         exit;
       }else{
         $valid = false;
@@ -115,19 +115,16 @@ if(!empty($_POST)){
               <div class="mb-3">
                   <?php if(isset($err_email_consultant)){echo '<div>' . $err_email_consultant . '</div>';}?>
                   <label for="email" class="form-label">E-mail</label>
-                  <input class="form-control" type="text" name="Email" value="<?php if(isset($Email_consultant)){echo $Email_consultant;}?>" placeholder="E-mail">
+                  <input class="form-control" type="text" name="email_consultant" value="<?php if(isset($email_consultant)){echo $email_consultant;}?>" placeholder="E-mail">
               </div>
               <div class="mb-3">
                   <?php if(isset($err_mdp_consultant)){echo '<div>' . $err_mdp_consultant . '</div>';}?>
                   <label for="password" class="password">Mot de passe</label>
-                  <input class="form-control" type="password" name="Mdp" value="<?php if(isset($Mdp_consultant)){echo $Mdp_consultant;}?>" placeholder="Mot de passe">
-              </div>
-              <div class="mb-3">
-                <a href="motdepasse.php">Mot de passe oublié</a>
+                  <input class="form-control" type="password" name="mdp_consultant" value="<?php if(isset($mdp_consultant)){echo $mdp_consultant;}?>" placeholder="Mot de passe">
               </div>
 
                 <div class="p-2">
-                  <button class="btn btn-primary" name="connexion">Envoyer</button>
+                  <button class="btn btn-primary" name="connexion_consultant">Envoyer</button>
                 </div>
               </div>           
               </form>

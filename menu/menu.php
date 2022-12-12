@@ -15,7 +15,7 @@
                 <a class="nav-link " aria-current="page" href="../_Recruteurs/offres.php">Offres</a>
                 </li>
                 <li class="nav-item fw-bold">
-                <a class="nav-link" href="#">Mes candidatures</a>
+                <a class="nav-link" href="../_Candidats/mes_candidatures.php">Mes candidatures</a>
                 </li>
                 </ul>
             <div class= d-flex>
@@ -33,7 +33,7 @@
                     <a class="nav-link " aria-current="page" href="../_Recruteurs/offres.php">Offres</a>
                     </li>
                     <li class="nav-item fw-bold">
-                    <a class="nav-link" href="#">Mes candidatures</a>
+                    <a class="nav-link" href="../_Candidats/mes_candidatures.php">Mes candidatures</a>
                     </li>
                     </ul>   
                     

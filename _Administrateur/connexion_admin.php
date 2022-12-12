@@ -121,10 +121,6 @@ if(!empty($_POST)){
                   <label for="password" class="password">Mot de passe</label>
                   <input class="form-control" type="password" name="mdp_admin" value="<?php if(isset($mdp_admin)){echo $mdp_admin;}?>" placeholder="Mot de passe">
               </div>
-              <div class="mb-3">
-                <a href="motdepasse.php">Mot de passe oublié</a>
-              </div>
-
                 <div class="p-2">
                   <button class="btn btn-primary" name="connexion_admin">Envoyer</button>
                 </div>

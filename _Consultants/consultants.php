@@ -1,136 +1,103 @@
 <?php
-include_once('../_BDD/include.php');
-
-
-
-if(isset($_SESSION['id'])){
-  header('Location: profil.php');
-  exit;
-}
-
-if(!empty($_POST)){
-  extract($_POST);
-  $valid = (boolean) true;
-
-  if(isset($_POST['connexion'])){
-    $Email = trim($Email);
-    $Mdp = trim($Mdp);
-
-    if(empty($Email)){
-      $valid = false;
-      $err_email = "Ce champ ne peut pas être vide";
-    }else{
-      $req = $BDD->prepare("SELECT id
-        FROM utilisateurs
-        WHERE email = ?");
-      
-      $req->execute(array($Email));
-      $ulisateur = $req->fetch();
-
-      if(!isset($ulisateur['id'])){
-        $valid = false;
-        $err_email = "Ce champ ne peut pas être vide";
-      }
-    }
-    if(empty($Mdp)){
-      $valid = false;
-      $err_mdp = "Ce champ ne peut pas être vide";
-
-      $req = $BDD->prepare("SELECT id
-      FROM utilisateurs
-      WHERE email = ? AND mdp = ?");
+   require_once('../_BDD/include.php'); 
     
-  }
-
-    $req->execute(array($Email));
-    $verif_utilisateur = $req->fetch();
-
-    if(!isset($verif_utilisateur['id'])){
-      $valid = false ; 
-      $err_email = "Ce champ ne peut pas être vide";
+    if(!isset($_SESSION['id'])){ 
+        header('../menu/index.php'); 
+        exit; 
     }
-    if($valid){
-      $req = $BDD->prepare("SELECT *
-      FROM utilisateurs
-      WHERE email = ?");
+    $req6 = $BDD->prepare("SELECT *
+    FROM consultants
+    WHERE id = ?");
 
-      $req->execute(array($Email));
+        $req6->execute([$_SESSION['id']]);
 
-      $verif_utilisateur = $req->fetch();
-
-      if(isset($verif_utilisateur['id'])){
-        $date_connexion = date('Y-m-d H:i:s');
-
-        $req = $BDD->prepare("UPDATE utilisateur SET date_connexion = ? WHERE id = ?");
-        $req->execute(array($date_connexion, $verif_utilisateur['id']));
-      
-        $_SESSION ['id'] = $verif_utilisateur['id'];
-        $_SESSION ['Nom'] = $verif_utilisateur['nom'];
-        $_SESSION ['email'] = $verif_utilisateur['email'];
-  
-          
-        header('Location: profil.php');
-        exit;
-      }else{
-        $valid = false;
-        $err_email = "la combinaison Email/Mot de passe est incorrect";
-      }
-
-      
+        $req_profil_consultant = $req6->fetch();
+    
+    switch($req_profil_consultant['role']){
+        case 0;
+            $role = "Profil candidat en attente de validation";
+        break;
+        case 1;
+            $role = "Profil recruteur en attente de validation";
+        break;
+        case 2;
+            $role = "Profil candidat validé";
+        break;
+        case 3;
+            $role = "Profil recruteur validé";
+        break;
+        case 4;
+            $role = "Profil consultant";
+        break;
+        case 5;
+            $role = "Profil administrateur";
+        break;
     }
-  }
-}
+
 ?>
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <title>Connexion</title>  
-    </head>
-  <body>
-
- 
-  <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <a href="../menu/index.php"><img src="../images/logo.jpg" alt="logo du site" width="100" height="100"></a>    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <title>Profil consultant</title>
+    <head>
+    <body>
+    <?php
+      require_once('../_Administrateur/menu-admin.php');    
+    ?>
+   
+        <div class="recruteur">
+            <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>
+            | Spécialiste du recrutement dans l'hotellerie et la restauration </p>
         </div>
-    </nav>
 
-    <div class="recruteur">
-        <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>
-        | Spécialiste du recrutement dans l'hotellerie et la restauration </p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-              <h1 class="col-md-3 mx-auto mx-auto">
-                  Se connecter 
-              </h1>
-              <form id="Formulaire" name="contact" method="POST" data-netlify="true">
-              <div class="col-md-6 mx-auto" style="width: 500px;">
-              
-              <div class="mb-3">
-                  <?php if(isset($err_email)){echo '<div>' . $err_email . '</div>';}?>
-                  <label for="email" class="form-label">E-mail</label>
-                  <input class="form-control" type="text" name="Email" value="<?php if(isset($Email)){echo $Email;}?>" placeholder="E-mail">
-              </div>
-              <div class="mb-3">
-                  <?php if(isset($err_mdp)){echo '<div>' . $err_mdp . '</div>';}?>
-                  <label for="password" class="password">Mot de passe</label>
-                  <input class="form-control" type="password" name="Mdp" value="<?php if(isset($Mdp)){echo $Mdp;}?>" placeholder="Mot de passe">
-              </div>
-              <div class="mb-3">
-                <a href="motdepasse.php">Mot de passe oublié</a>
-              </div>
+        <div class="container">
+            <div class="row">	
+            <div class="col-sm-0 col-md-0 col-lg-0"></div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="cdr-ins">
+                <h1 style=text-align:center;>Bonjour <?= $req_profil_consultant['nom_consultant']?></h1>
+                
 
-                <div class="p-2">
-                  <button class="btn btn-primary" name="connexion">Envoyer</button>
-                </div>
-              </div>           
-              </form>
+            <div style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; text-align:center;">
+
+                <h2 style="text-align: center;">Ma page de profil <br/></h2>
+            <div>
+            Titulaire du compte : <?= $req_profil_consultant['nom_consultant']?>
+            </div>
+            <div>
+            Adresse E-mail : <?= $req_profil_consultant['email_consultant'] ?>
+            </div>
+            <div>
+            Role utilisateur : <?= $role ?>
+            </div>
+            <div>
+            <a href="modifier-compte.php">Modifier mon compte</a>
+            </div>
+              <div>
+              <h2 style="margin-top: 10px">Les offres d'emploi</h2>
+                <a  class="btn btn-primary" href="modifier-compte.php">Validation des candidatures</a>
+              </div>
+              <div>
+                <a  class="btn btn-primary" href="../menu/offres.php" style="margin-top: 20px;">Validation des offres d'emploi</a>
+              </div>
+              <div>
+                <h2 style="margin-top: 10px">Les membres</h2>
+              </div>
+              <div>
+                <a  class="btn btn-primary" href="../_Validations/voir_candidats.php" style="margin-top: 10px;">Valider le profil des candidats</a>
+              </div>
+              <div>
+                <a  class="btn btn-primary" href="../_Validations/voir_recruteurs.php" style="margin-top: 20px;">Valider le profil des recruteurs</a>
+              </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-  </body>
+    </body>
 </html>

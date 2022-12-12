@@ -24,37 +24,21 @@
         <?php
             include_once('../menu/menu.php');
         ?>
-
-
-
+      
+        
         <div class="container">
-                    <div class="row">	
-                        
-                        <div class="col-sm-0 col-md-0 col-lg-0"></div>
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="cdr-ins">
-
-                            <h1 style="text-align : center">Les offres d'emploi</h1>
-
-                            <?php
-                                if(isset($_SESSION['id'])){
-                            ?>
-                                <a href="publier_annonce.php"><button type="button" class="btn btn-primary">Publier une offre d'emploi</button></a>
-                            <?php
-                            }
-                            ?>
-
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12"></div>
+                    <h1 style="text-align : center">Les offres d'emploi</h1>
                     <?php
                         if(isset($_SESSION['id'])){
 
                             foreach($req as $r){
                     ?>
-                           
-
                             <div style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
                             <a href="Les offres/<?= $r['id'] ?>" style="color: #666; text-decoration: none; font-size: 28px;"><?= $r['titre'] ?></a>
                             <div style="border-top: 2px solid #EEE; padding-top: 15px">
-                                <?= $r['recruteur']; ?>
+                                <?= $r['id_recruteur']; ?>
                             </div>
                             <div style="border-top: 2px solid #EEE; padding-top: 15px; text-align: right">
                                 <?= $r['contenu']; ?>
@@ -63,7 +47,7 @@
                                 <?= $r['date_creation']; ?>
                             </div>
                             <div>
-                               <button>Postuler</button>
+                                <a class="btn btn-primary" href="../_Candidats/mes_candidatures.php" role="button">Postuler</a>
                             </div>
                         </div>                  
                     <?php
@@ -76,7 +60,7 @@
                        <div style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
                             <a href="Les offres/<?= $r['id'] ?>" style="color: #666; text-decoration: none; font-size: 28px;"><?= $r['titre'] ?></a>
                             <div style="border-top: 2px solid #EEE; padding-top: 15px">
-                                <?= $r['id']; ?>
+                                <?= $r['recruteur_id']; ?>
                             </div>
                             <div style="border-top: 2px solid #EEE; padding-top: 15px; text-align: right">
                                 <?= $r['contenu']; ?>
