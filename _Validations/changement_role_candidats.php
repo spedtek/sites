@@ -118,7 +118,7 @@ if (!isset($_SESSION['id'])){
                                 ?>
                             </select>
                             <input type="hidden" name="id" value="<?= $r['id'] ?>"/>
-                            <button type="submit" name="changementrole">Modifier</button>
+                            <button class="btn btn-primary" type="submit" name="changementrole">Modifier</button>
                         </div>
                         <br>
                         </form>

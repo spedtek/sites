@@ -2,11 +2,16 @@
 
     include_once('../_BDD/include.php');
 
+    if (!isset($_SESSION['id'])){
+    header('Location: index.php');
+    exit;
+  }
     $req = $BDD->query("SELECT *
     FROM offres
     ORDER BY date_creation");
 
     $req = $req->fetchAll();
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -46,9 +51,9 @@
                             <div style="border-top: 2px solid #EEE; padding-top: 15px; text-align: right">
                                 <?= $r['date_creation']; ?>
                             </div>
-                            <div>
-                                <a class="btn btn-primary" href="../_Candidats/mes_candidatures.php" role="button">Postuler</a>
-                            </div>
+                            <form method="POST">
+                                <input class="btn btn-primary" type="submit" name="Postuler" value="Postuler à cette offre">
+                            </form>
                         </div>                  
                     <?php
                             }

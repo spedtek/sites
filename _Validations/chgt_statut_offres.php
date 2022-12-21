@@ -6,69 +6,69 @@ if (!isset($_SESSION['id'])){
     exit;
   }
 
-    $req = $BDD->prepare("SELECT u.*, ar.libelle
-    FROM utilisateurs u
-    LEFT JOIN admin_role ar ON ar.role = u.role
+    $req1 = $BDD->prepare("SELECT u.*, ar.libelle
+    FROM offres u
+    LEFT JOIN admin_offre ar ON ar.statut = u.statut
     WHERE u.id <> ?");
 
-    $req->execute([$_SESSION['id']]);
+    $req1->execute([$_SESSION['id']]);
 
-    $req_list_user = $req->fetchAll();
+    $req_list_offres = $req1->fetchAll();
 
-    $req = $BDD->prepare("SELECT *
-    FROM admin_role");
+    $req1 = $BDD->prepare("SELECT *
+    FROM admin_offre");
 
-    $req->execute();
+    $req1->execute();
 
-    $req_list_role = $req->fetchAll();
+    $req_list_statut = $req1->fetchAll();
 
-    $tab_list_role = [];
+    $tab_list_statut = [];
 
-    foreach($req_list_role as $r){
-        array_push($tab_list_role, [$r['role'], $r['libelle']]);
+    foreach($req_list_statut as $r){
+        array_push($tab_list_statut, [$r['statut'], $r['libelle']]);
     }
     if(!empty($_POST)){
         extract($_POST);
 
         $valid = true;
 
-        if(isset($_POST['changementrole'])){
+        if(isset($_POST['changement_statut_offre'])){
             $id = (int) $id;
-            $role = (int) $role;
+            $statut = (int) $statut;
 
-            $req = $BDD->prepare("SELECT *
-                FROM utilisateurs
+            $req1 = $BDD->prepare("SELECT *
+                FROM offres
                 WHERE id = ?");
 
-            $req->execute([$id]);
+            $req1->execute([$id]);
 
-            $verif_utilisateur = $req->fetch();
+            $verif_offre = $req1->fetch();
 
-            if(!$verif_utilisateur){
+            if(!$verif_offre){
                 $valid = false;
-                $err_utilisateur = "cet utilisateur n'existe plus !";
+                $err_offre = "cette offre n'existe plus !";
             }else{
-                $req = $BDD->prepare("SELECT *
-                    FROM admin_role
-                    WHERE role = ?");
+                $req1 = $BDD->prepare("SELECT *
+                    FROM admin_offre
+                    WHERE statut = ?");
 
-                $req->execute([$role]);
+                $req1->execute([$statut]);
 
-                $verif_role = $req->fetch();
+                $verif_statut_offre = $req1->fetch();
 
-                if(!$verif_role){
+                if(!$verif_statut_offre){
                     $valid = false;
-                    $err_role = "ce role n'existe pas !";
+                    $err_statut_offre = "ce statut n'existe pas !";
                 }
             }
 
             
             if($valid){
-                $req = $BDD->prepare("UPDATE utilisateurs SET role = ? WHERE id = ?");
+                $req1 = $BDD->prepare("UPDATE offres SET statut = ? WHERE id = ?");
 
-                $req->execute([$verif_role['role'], $id]);
+                $req1->execute([$verif_statut_offre['statut'], $id]);
 
-                header('Location: voir_candidats.php');
+                header('Location: validation_offres.php');
                 exit;
 
             }
@@ -98,19 +98,19 @@ if (!isset($_SESSION['id'])){
                 <div class="col-sm-0 col-md-2 col-lg-0"></div>
                 <div class="col-sm-12 col-md-8 col-lg-12">
                  
-                    <h2>Validation des profils candidats</h2>
+                    <h2>Validation des profils recruteurs</h2>
                     <div>
                         
                         <?php
-                            foreach($req_list_user as $r){
+                            foreach($req_list_offres as $r){
                         ?>
                         <form method="post">
                         <div>
-                            <div><?= $r['nom'] ?></div> 
-                            <select name="role">
-                                <option value="<?= $r['role']?>" hidden><?= $r['libelle'] ?></option>
+                            <div><?= $r['titre'] ?></div> 
+                            <select name="statut">
+                                <option value="<?= $r['statut']?>" hidden><?= $r['libelle'] ?></option>
                                 <?php
-                                    foreach($tab_list_role as $tr){
+                                    foreach($tab_list_statut as $tr){
                                 ?>
                                 <option value="<?= $tr['0']?>"><?= $tr['1'] ?></option>
                                 <?php        
@@ -118,7 +118,7 @@ if (!isset($_SESSION['id'])){
                                 ?>
                             </select>
                             <input type="hidden" name="id" value="<?= $r['id'] ?>"/>
-                            <button type="submit" name="changementrole">Modifier</button>
+                            <button type="submit" name="changement_statut_offre">Modifier</button>
                         </div>
                         <br>
                         </form>

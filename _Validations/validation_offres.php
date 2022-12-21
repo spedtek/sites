@@ -43,7 +43,7 @@ include('../_BDD/include.php');
 
                     <div class="cdr-ins">
 
-                        <h2>Offres d'empplois</h2>
+                        <h2>Offres d'emplois</h2>
                         <table class="table table-striped">
 
                         <thead>
@@ -52,6 +52,7 @@ include('../_BDD/include.php');
                                 <th>Contenu</th>
                                 <th>Id_Recruteur</th>
                                 <th>Date de creation</th>
+                                <th>Statut</th>
                                
                             </tr>
                         </thead>
@@ -64,6 +65,7 @@ include('../_BDD/include.php');
                             <td><?= $ap['contenu'] ?></td>
                             <td><?= $ap['id_recruteur'] ?></td>
                             <td><?= $ap['date_creation'] ?></td>
+                            <td><?= $ap['statut'] ?></td>
                             </tr>
                             <?php
                             }
