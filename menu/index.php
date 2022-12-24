@@ -110,7 +110,7 @@ if(!empty($_POST)){
         </div>
         <div class="container text-center">
           <div class="row justify-content-between">
-            <div class="col-4" style="margin: 8%; padding: 5%; text-align:center; font-size: 2em; color:royalblue">
+            <div class="col-4" style="margin: 8%; padding: 5%; text-align:center; font-size: 2em; border-radius:50px; background-color: #f8c916;">
             Le site de référence <br/>pour les métiers de <br/>la restauration et l'hotellerie
             </div>
             <div class="col-4" style="margin: 4%; padding: 5%; font-size: 30px;">

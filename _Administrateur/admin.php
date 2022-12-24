@@ -54,59 +54,37 @@ $req3 = $BDD->prepare("SELECT *
         <p class="p-3 mb-2 bg-warning text-dark text-center fw-bold"><a href="formulaire-recruteur.php">TNT CONSEILS </a>
         | Spécialiste du recrutement dans l'hotellerie et la restauration </p>
     </div>
-    </div>
-        <h1 class = "mb-5" style="text-align : center">Bonjour <?= $req_profil['nom_admin']?></h1>
-        <div class="container text-center">
-          <h2>Votre profil</h2>
-          <div class="row justify-content-center">
-            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
-              <div>
-                Titulaire du compte : <?= $req_profil['nom_admin']?>
-              </div>
-              <div>
-                Adresse E-mail : <?= $req_profil['email_admin'] ?>
-              </div>
-              <div>
-                Role utilisateur : <?= $role ?>
-              </div>
+
+    <div class="container">
+            <div class="row">	
+            <div class="col-sm-0 col-md-0 col-lg-0"></div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="cdr-ins">
+                <h1 style=text-align:center;>Bonjour <?= $req_profil['nom_admin']?></h1>
+                
+
+            <div style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; text-align:center;">
+
+                <h2 style="text-align: center;">Ma page de profil <br/></h2>
+            <div>
+            Titulaire du compte : <?= $req_profil['nom_admin']?>
             </div>
-            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
-              <p>Votre profil permet de créer un consultant</p>
+            <div>
+            Adresse E-mail : <?= $req_profil['email_admin'] ?>
+            </div>
+            <div>
+            Role utilisateur : <?= $role ?>
+            </div>
+            <div>
+            <h2 style="margin-top: 10px">Création d'un compte consultant</h2>
+            <p>Votre profil permet de créer un consultant</p>
               <a  class="btn btn-primary" href="creation_consultant.php">Création d'un profil consultant</a>
-          </div>
-        </div>
-
-        <h2 style="margin-top: 10px">Les offres d'emploi</h2>
-        <div class="container text-center">
-          <div class="row justify-content-center">
-            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
-              <div class="mb-2">
-                <a  class="btn btn-primary" href="../_Validations/validation_offres.php">Validation des candidatures</a>
-              </div>
             </div>
-                <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
-                <div class="mb-2"> 
-                <a  class="btn btn-primary" href="../_Validations/validation_offres.php" style="margin-top: 20px;">Validation des offres d'emploi</a>
-              </div>
-            
+          </div>
           </div>
         </div>
-
-
-        <h2 style="margin-top: 10px">Les membres</h2>
-        <div class="container text-center">
-          <div class="row justify-content-center">
-            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
-              <div class="mb-2">
-                <a  class="btn btn-primary" href="../_Validations/voir_candidats.php" style="margin-top: 10px;">Valider le profil des candidats</a>
-              </div>
-            </div>
-            <div class="col-4" style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px; margin:20px;">
-              <a  class="btn btn-primary" href="../_Validations/voir_recruteurs.php" style="margin-top: 20px;">Valider le profil des recruteurs</a>
-          </div>
         </div>
-
-
+  </div>
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

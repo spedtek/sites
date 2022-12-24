@@ -3,14 +3,15 @@
     include_once('../_BDD/include.php');
 
     if (!isset($_SESSION['id'])){
-    header('Location: index.php');
+    header('Location: ../menu/index.php');
     exit;
   }
-    $req = $BDD->query("SELECT *
+    $req = $BDD->prepare("SELECT *
     FROM offres
     ORDER BY date_creation");
 
-    $req = $req->fetchAll();
+    $req->execute();
+    $req_offres = $req->fetchAll();
 
 ?>
 <!doctype html>
@@ -38,22 +39,22 @@
                     <?php
                         if(isset($_SESSION['id'])){
 
-                            foreach($req as $r){
+                            foreach($req_offres as $ro){
                     ?>
                             <div style="margin-top: 10px; background: white; box-shadow: 0 5px 10px rgba(0, 0, .09); padding: 5px 10px; border-radius: 10px">
-                            <a href="Les offres/<?= $r['id'] ?>" style="color: #666; text-decoration: none; font-size: 28px;"><?= $r['titre'] ?></a>
+                            <a href="Les offres/<?= $ro['id'] ?>" style="color: #666; text-decoration: none; font-size: 28px;"><?= $ro['titre'] ?></a>
                             <div style="border-top: 2px solid #EEE; padding-top: 15px">
-                                <?= $r['id_recruteur']; ?>
+                                <?= $ro['id']; ?>
                             </div>
                             <div style="border-top: 2px solid #EEE; padding-top: 15px; text-align: right">
-                                <?= $r['contenu']; ?>
+                                <?= $ro['contenu']; ?>
                             </div>
                             <div style="border-top: 2px solid #EEE; padding-top: 15px; text-align: right">
-                                <?= $r['date_creation']; ?>
+                                <?= $ro['date_creation']; ?>
                             </div>
-                            <form method="POST">
-                                <input class="btn btn-primary" type="submit" name="Postuler" value="Postuler à cette offre">
-                            </form>
+                            <div class="p-2">
+                                <a class="btn btn-primary" href="candidature.php?id=<?= $ro['id']; ?>" role="button">Voir cette offre</a>
+                            </div> 
                         </div>                  
                     <?php
                             }

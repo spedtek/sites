@@ -46,7 +46,7 @@
     <head>
     <body>
     <?php
-      require_once('../_Administrateur/menu-admin.php');    
+      require_once('menu_consultant.php');    
     ?>
    
         <div class="recruteur">
@@ -79,10 +79,10 @@
             </div>
               <div>
               <h2 style="margin-top: 10px">Les offres d'emploi</h2>
-                <a  class="btn btn-primary" href="modifier-compte.php">Validation des candidatures</a>
+                <a  class="btn btn-primary" href="#">Validation des candidatures</a>
               </div>
               <div>
-                <a  class="btn btn-primary" href="../menu/offres.php" style="margin-top: 20px;">Validation des offres d'emploi</a>
+                <a  class="btn btn-primary" href="../_Validations/validation_offres.php" style="margin-top: 20px;">Validation des offres d'emploi</a>
               </div>
               <div>
                 <h2 style="margin-top: 10px">Les membres</h2>
