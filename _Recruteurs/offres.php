@@ -52,9 +52,12 @@
                             <div style="border-top: 2px solid #EEE; padding-top: 15px; text-align: right">
                                 <?= $ro['date_creation']; ?>
                             </div>
-                            <div class="p-2">
-                                <a class="btn btn-primary" href="candidature.php?id=<?= $ro['id']; ?>" role="button">Voir cette offre</a>
-                            </div> 
+                            <form method="POST">
+                                <div class="p-2">
+                                    <a href="../_Candidats/postuler.php"><button type="submit" name="candidater">Postuler</button></a>
+                                </div> 
+                            </form>
+                        
                         </div>                  
                     <?php
                             }

@@ -33,14 +33,7 @@
             $role = "Profil administrateur";
         break;
     }
-    $req2 = $BDD->prepare("SELECT *
-    FROM cv
-    WHERE id = ?");
-
-        $req2->execute([$_SESSION['id']]);
-
-        $req_profil2 = $req2->fetch();
-// 
+    
 
 
 ?>

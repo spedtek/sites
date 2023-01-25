@@ -35,8 +35,9 @@
         break;
     }
 
+    $cv = $_FILES['cv']['name'];
     if(isset($_POST["modifier"])){
-      $req=$BDD->prepare("INSERT INTO cv(nom,taille,type,fichier) values(?,?,?,?)");
+      $req=$BDD->prepare("INSERT INTO utilisateurs (cv) values(?)");
       $req->execute(array($_FILES["cv"]["name"], $_FILES["cv"]["size"], 
       $_FILES["cv"]["type"],$_FILES["cv"]["tmp_name"]));
 

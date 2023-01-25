@@ -128,13 +128,14 @@ if(!empty($_POST)){
                   <label for="password" class="password">Mot de passe</label>
                   <input class="form-control" type="password" name="Mdp" value="<?php if(isset($Mdp)){echo $Mdp;}?>" placeholder="Mot de passe">
               </div>
+              <div class="p-2">
+                  <button class="btn btn-primary" name="connexion">Se connecter</button>
+                </div>
               <div class="mb-3">
-                <a href="motdepasse.php">Mot de passe oublié</a>
+                <a href="../_Candidats/inscription.php">Créer un compte</a>
               </div>
 
-                <div class="p-2">
-                  <button class="btn btn-primary" name="connexion">Envoyer</button>
-                </div>
+
               </div>           
               </form>
             </div>
@@ -147,7 +148,7 @@ if(!empty($_POST)){
             <a class="btn btn-primary" href="../_Consultants/connexion-consultant.php" role="button">Acces réservé aux consultants</a>
             </div>
             <div class="col">
-            <a class="btn btn-primary" href="../_Administrateur/connexion_admin.php" role="button">Acces réservé aux administrateurs</a>
+            <a class="btn btn-primary" href="../_Administrateur/connexion_admin.php" role="button">Espace admin</a>
             </div>
         </div>
 

@@ -6,15 +6,24 @@ include_once('../_BDD/include.php');
         header('Location: ../menu/index.php');
         exit;
     }
-    $id = (int) htmlentities(trim($_GET['id']));
+    if (!isset($_SESSION['id'])){
+        header('Location: index.php'); 
+        exit;
+      }
+      
+      // Récupèration de l'id passer en argument dans l'URL
 
-    $id = $BDD->prepare("SELECT *
-    FROM offres
-    WHERE id = ?");
+      // On récupère les informations de l'utilisateur grâce à son ID
+      $afficher_profil = $BDD->query("SELECT * 
+        FROM offres 
+        WHERE id = ?");
 
-    $id->execute();
-    $id_candidature = $id->fetch();
-
+      $afficher_profil = $afficher_profil->fetch();
+      
+      if(!isset($afficher_profil['id'])){
+        header('Location: index.php');
+        exit;
+      }
 ?>
 <!doctype html>
 <html lang="fr">
@@ -32,19 +41,15 @@ include_once('../_BDD/include.php');
         <?php
             include_once('../menu/menu.php');
         ?>
-      
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12"></div>
-<h2>Voici le profil de <?= $id_candidature['titre'] ?></h2><div>Quelques informations sur lui : </div>
-<ul>
-<li>Votre id est : <?=$id_candidature['id'] ?></li>            
-<li>Votre mail est : <?= $id_candidature['contenu'] ?></li> 
-<li>Votre compte a été crée le : <?= $id_candidature['date_creation'] ?></li>             
-</ul>                   
-            </div>
-        </div>
+
+<<h2>Voici le profil de <?= $afficher_profil['titre']; ?></h2><div>Quelques informations sur lui : </div>    
+    <ul>            
+      <li>Votre id est : <?= $afficher_profil['id'] ?></li>                         
+      <li>Votre mail est : <?= $afficher_profil['mail'] ?></li>            
+      <li>Votre compte a été crée le : <?= $afficher_profil['date_creation_compte'] ?></li>                 
+    </ul>                
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
 </html>
+        
