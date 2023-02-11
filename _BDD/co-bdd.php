@@ -1,12 +1,12 @@
 <?php
   // Déclaration d'une nouvelle classe
   class connexionBDD {
-    private $host    = 'localhost:3306';  // nom de l'host  
-    private $name    = 'site_trtconseil';    // nom de la base de donnée
-    private $user    = 'root';       // utilisateur 
-    private $pass    = 'root';       // mot de passe (il faudra peut-être mettre '' sous Windows)
+    private $host    = 'eu-cdbr-west-03.cleardb.net';  // nom de l'host  
+    private $name    = 'heroku_515031820554d9b';    // nom de la base de donnée
+    private $user    = 'b37371ad72bf0e';       // utilisateur 
+    private $pass    = '4a772254';       // mot de passe (il faudra peut-être mettre '' sous Windows)
     private $connexion;
-    
+
     function __construct($host = null, $name = null, $user = null, $pass = null){
       if($host != null){
         $this->host = $host;           
